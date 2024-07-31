@@ -5,7 +5,7 @@ API Documentation
 
 ### Request
 
-`GET /matching-images`
+`GET /coupledp`
 
 ### Response
 
@@ -28,7 +28,7 @@ Example response:
 
 ### Request
 
-`GET /add-matching-images?maleUrl=[MALE_IMAGE_URL]&femaleUrl=[FEMALE_IMAGE_URL]`
+`GET /addcoupledp?maleUrl=[MALE_IMAGE_URL]&femaleUrl=[FEMALE_IMAGE_URL]`
 
 ### Query Parameters
 
