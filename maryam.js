@@ -1,3 +1,12 @@
+console.log(`\n
+███╗   ███╗ █████╗ ██████╗ ██╗   ██╗ █████╗ ███╗   ███╗
+████╗ ████║██╔══██╗██╔══██╗╚██╗ ██╔╝██╔══██╗████╗ ████║
+██╔████╔██║███████║██████╔╝ ╚████╔╝ ███████║██╔████╔██║
+██║╚██╔╝██║██╔══██║██╔══██╗  ╚██╔╝  ██╔══██║██║╚██╔╝██║
+██║ ╚═╝ ██║██║  ██║██║  ██║   ██║   ██║  ██║██║ ╚═╝ ██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝
+
+`);
 const express = require('express');
 const fs = require('fs');
 const maryam = require('lodash');
@@ -10,7 +19,7 @@ const sentUrls = [];
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
   let matchingUrls;
-  while (!matchingUrls || sentUrls.includes(matchingUrls.maleUrl) || sentUrls.includes(matchingUrls.femaleUrl)) {
+  while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
     if (sentUrls.length === shuffledData.length) {
       shuffledData = maryam.shuffle(data);
       sentUrls.length = 0;
@@ -18,21 +27,21 @@ app.get('/coupledp', async (req, res) => {
     const randomIndex = Math.floor(Math.random() * shuffledData.length);
     matchingUrls = shuffledData[randomIndex];
   }
-  
-  sentUrls.push(matchingUrls.maleUrl, matchingUrls.femaleUrl);
-  
+
+  sentUrls.push(matchingUrls.Boy, matchingUrls.Girl);
+
   console.log('Req Recived For Couple DP');
   res.json(matchingUrls);
 });
 app.get('/addcoupledp', async (req, res) => {
-  const maleUrl = req.query.maleUrl;
-  const femaleUrl = req.query.femaleUrl;
+  const Boy = req.query.Boy;
+  const Girl = req.query.Girl;
 
-  if (!maleUrl || !femaleUrl) {
-    return res.status(400).send('Both maleUrl and femaleUrl parameters are required');
+  if (!Boy || !Girl) {
+    return res.status(400).send('Both Boy and Girl parameters are required');
   }
 
-  data.push({ maleUrl, femaleUrl });
+  data.push({ Boy, Girl });
   shuffledData = maryam.shuffle(data);
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
@@ -51,5 +60,18 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log(`
+=================================================
+  
+Api                    Is                   Now
+
+ ██████╗ ███╗   ██╗██╗     ██╗███╗   ██╗███████╗
+██╔═══██╗████╗  ██║██║     ██║████╗  ██║██╔════╝
+██║   ██║██╔██╗ ██║██║     ██║██╔██╗ ██║█████╗  
+██║   ██║██║╚██╗██║██║     ██║██║╚██╗██║██╔══╝  
+╚██████╔╝██║ ╚████║███████╗██║██║ ╚████║███████╗
+ ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝
+
+=================================================
+ `);
 });
