@@ -15,8 +15,8 @@ Example response:
 
 ```
 {
-  "maleUrl": "https://example.com/male-image.jpg",
-  "femaleUrl": "https://example.com/female-image.jpg"
+  "Girl": "https://example.com/male-image.jpg",
+  "Boy": "https://example.com/female-image.jpg"
 }
 ```
 
@@ -28,12 +28,12 @@ Example response:
 
 ### Request
 
-`GET /addcoupledp?maleUrl=[MALE_IMAGE_URL]&femaleUrl=[FEMALE_IMAGE_URL]`
+`GET /addcoupledp?Girl=[MALE_IMAGE_URL]&Boy=[FEMALE_IMAGE_URL]`
 
 ### Query Parameters
 
-- `maleUrl`: The URL of the male image
-- `femaleUrl`: The URL of the female image
+- `Girl`: The URL of the male image
+- `Boy`: The URL of the female image
 
 ### Response
 
@@ -47,7 +47,7 @@ Matching images added successfully
 
 ### Error responses
 
-- `400 Bad Request`: Both maleUrl and femaleUrl parameters are required
+- `400 Bad Request`: Both Girl and Boy parameters are required
 - `500 Internal Server Error`: Something went wrong on the server
 
 I hope this helps! Let me know if you have any questions.
