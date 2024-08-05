@@ -18,11 +18,30 @@ const sentUrls = [];
 
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
-    let apiKeys = "FarisAliXD"
-  let apiKey = req.query.apiKey
-  if (apiKey !== apiKeys) {
-  return res.status(400).send("Api Key Is Not Correct");
+
+function chkapiKeys(callback) {
+  fs.readFile('apiKeys.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading apiKeys.json:', err);
+      return;
+    }
+    const jsonData = JSON.parse(data);
+    callback(jsonData.apiKeys);
+  });
 }
+
+// Check if the predefined user greeting exists in the greetings list
+chkapiKeys((apiKeys) => {
+  if (apiKeys.includes(usergreet.toLowerCase())) {
+    
+ 
+
+    
+  //  let apiKeys = "FarisAliXD"
+//  let apiKey = req.query.apiKey
+ // if (apiKey !== apiKeys) {
+ // return res.status(400).send("Api Key Is Not Correct");
+// }
   let matchingUrls;
   while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
     if (sentUrls.length === shuffledData.length) {
@@ -37,6 +56,10 @@ app.get('/coupledp', async (req, res) => {
 
   console.log('Req Recived For Couple DP');
   res.json(matchingUrls);
+});
+     } else {
+   return res.status(400).send('Your Api Key Is Incorrect.');
+  }
 });
 app.get('/addcoupledp', async (req, res) => {
   const Boy = req.query.Boy;
