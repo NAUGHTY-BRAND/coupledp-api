@@ -7,17 +7,17 @@ console.log(`\n
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝
 
 `);
-
 const express = require('express');
 const fs = require('fs');
-const lodash = require('lodash');
+const maryam = require('lodash');
 const data = require('./dps.json');
 
 const app = express();
-let shuffledData = lodash.shuffle(data);
+let shuffledData = maryam.shuffle(data);
 const sentUrls = [];
 
 app.use(express.json());
+app.get('/coupledp', async (req, res) => {
 
 function chkapiKeys(callback) {
   fs.readFile('apiKeys.json', 'utf8', (err, data) => {
@@ -30,44 +30,50 @@ function chkapiKeys(callback) {
   });
 }
 
-app.get('/coupledp', async (req, res) => {
-  chkapiKeys((apiKeys) => {
-    if (apiKeys.includes(req.query.apiKey)) {  // Assuming you want to check API key here
-      let matchingUrls;
-      while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
-        if (sentUrls.length === shuffledData.length) {
-          shuffledData = lodash.shuffle(data);
-          sentUrls.length = 0;
-        }
-        const randomIndex = Math.floor(Math.random() * shuffledData.length);
-        matchingUrls = shuffledData[randomIndex];
-      }
+// Check if the predefined user greeting exists in the greetings list
+chkapiKeys((apiKeys) => {
+  if (apiKeys.includes(usergreet.toLowerCase())) {
+    
+ 
 
-      sentUrls.push(matchingUrls.Boy, matchingUrls.Girl);
-
-      console.log('Req Recived For Couple DP');
-      res.json(matchingUrls);
-    } else {
-      return res.status(400).send('Your Api Key Is Incorrect.');
+    
+  //  let apiKeys = "FarisAliXD"
+//  let apiKey = req.query.apiKey
+ // if (apiKey !== apiKeys) {
+ // return res.status(400).send("Api Key Is Not Correct");
+// }
+  let matchingUrls;
+  while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
+    if (sentUrls.length === shuffledData.length) {
+      shuffledData = maryam.shuffle(data);
+      sentUrls.length = 0;
     }
-  });
-});
+    const randomIndex = Math.floor(Math.random() * shuffledData.length);
+    matchingUrls = shuffledData[randomIndex];
+  }
 
+  sentUrls.push(matchingUrls.Boy, matchingUrls.Girl);
+
+  console.log('Req Recived For Couple DP');
+  res.json(matchingUrls);
+});
+  else {
+   return res.status(400).send('Your Api Key Is Incorrect.');
+  }
+}
 app.get('/addcoupledp', async (req, res) => {
   const Boy = req.query.Boy;
   const Girl = req.query.Girl;
-  const apiKey = req.query.apiKey;
-  
+  let apiKeys = "FARISXD5251515050"
+  let apiKey = req.query.apiKey
   if (!Boy || !Girl) {
     return res.status(400).send('Both Boy and Girl parameters are required');
   }
-  
-  if (apiKey !== "FARISXD5251515050") {
-    return res.status(400).send("Api Key Is Not Correct");
-  }
-  
+if (apiKey !== apiKeys) {
+  return res.status(400).send("Api Key Is Not Correct");
+}
   data.push({ Boy, Girl });
-  shuffledData = lodash.shuffle(data);
+  shuffledData = maryam.shuffle(data);
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) {
@@ -79,7 +85,6 @@ app.get('/addcoupledp', async (req, res) => {
     res.send('Matching images added successfully');
   });
 });
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
