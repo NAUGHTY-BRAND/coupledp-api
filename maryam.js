@@ -47,7 +47,7 @@ app.get('/addcoupledp', async (req, res) => {
   }
 
 
-  data.push({ Boy, Girl, apiKey });
+  data.push({ Boy, Girl });
   shuffledData = maryam.shuffle(data);
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
