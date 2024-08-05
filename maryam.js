@@ -18,6 +18,11 @@ const sentUrls = [];
 
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
+    let apiKeys = "FarisAliXD"
+  let apiKey = req.query.apiKey
+  if (apiKey !== apiKeys) {
+  return res.status(400).send("Api Key Is Not Correct");
+}
   let matchingUrls;
   while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
     if (sentUrls.length === shuffledData.length) {
@@ -36,11 +41,14 @@ app.get('/coupledp', async (req, res) => {
 app.get('/addcoupledp', async (req, res) => {
   const Boy = req.query.Boy;
   const Girl = req.query.Girl;
-
+  let apiKeys = "FARISXD5251515050"
+  let apiKey = req.query.apiKey
   if (!Boy || !Girl) {
     return res.status(400).send('Both Boy and Girl parameters are required');
   }
-
+if (apiKey !== apiKeys) {
+  return res.status(400).send("Api Key Is Not Correct");
+}
   data.push({ Boy, Girl });
   shuffledData = maryam.shuffle(data);
 
