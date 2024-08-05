@@ -18,26 +18,12 @@ const sentUrls = [];
 
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
-
-function chkapiKeys(callback) {
-  fs.readFile('apiKeys.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading apiKeys.json:', err);
-      return;
-    }
-    const jsonData = JSON.parse(data);
-    callback(jsonData.apiKeys);
-  });
-}
-
-// Check if the predefined user greeting exists in the greetings list
-chkapiKeys((apiKeys) => {
  let apiKeys = "FarisAliXD"
  let apiKey = req.query.apiKey
  if (apiKey !== apiKeys) {
  return res.status(400).send("Api Key Is Not Correct");
 }
-  let matchingUrls;
+ let matchingUrls;
   while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
     if (sentUrls.length === shuffledData.length) {
       shuffledData = maryam.shuffle(data);
@@ -52,12 +38,10 @@ chkapiKeys((apiKeys) => {
   console.log('Req Recived For Couple DP');
   res.json(matchingUrls);
 });
-        })
-              });
 app.get('/addcoupledp', async (req, res) => {
   const Boy = req.query.Boy;
   const Girl = req.query.Girl;
-  let apiKeys = "FARISXD5251515050"
+  let apiKeys = "VipFarisAliXD5251515050"
   let apiKey = req.query.apiKey
   if (!Boy || !Girl) {
     return res.status(400).send('Both Boy and Girl parameters are required');
