@@ -64,7 +64,7 @@ app.get('/addcoupledp', async (req, res) => {
   data.push({ Boy, Girl });
   shuffledData = maryam.shuffle(data);
 
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+  fs.writeFile('dps.json', JSON.stringify(data, null, 2), (err) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Error writing to data file');
