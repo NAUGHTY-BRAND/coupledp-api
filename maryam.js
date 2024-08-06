@@ -18,7 +18,7 @@ const sentUrls = [];
 
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
-  let apiKeys = "FarisAliXD"
+  let apiKeys = "Maryam"
   let apiKey = req.query.apiKey
   if (!apiKey) {
     return res.status(400).send('apiKey Parameter Is Required!');
@@ -45,7 +45,7 @@ app.get('/addcoupledp', async (req, res) => {
   const Boy = req.query.Boy;
   const Girl = req.query.Girl;
 
-  let apiKeys = "VipFarisAliXD5251515050"
+  let apiKeys = "VipMaryamApiKey"
   let apiKey = req.query.apiKey
   if (!apiKey) {
     return res.status(400).send('apiKey Parameter Is Required!');
