@@ -18,6 +18,15 @@ const sentUrls = [];
 
 app.use(express.json());
 app.get('/coupledp', async (req, res) => {
+  
+  if (!apiKey) {
+    return res.status(400).send('apiKey Parameter Is Required!');
+  }
+    let apiKeys = "FarisAliXD"
+  let apiKey = req.query.apiKey
+ if (apiKey !== apiKeys) {
+  return res.status(400).send("Api Key Is Not Correct");
+}
   let matchingUrls;
   while (!matchingUrls || sentUrls.includes(matchingUrls.Boy) || sentUrls.includes(matchingUrls.Girl)) {
     if (sentUrls.length === shuffledData.length) {
