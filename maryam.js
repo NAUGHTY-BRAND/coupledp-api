@@ -46,7 +46,7 @@ app.get('/addcoupledp', async (req, res) => {
   const Girl = req.query.Girl;
 
   let apiKeys = "VipFarisAliXD5251515050"
-  let apiKey = req.query.apiKey\
+  let apiKey = req.query.apiKey
   if (!apiKey) {
     return res.status(400).send('apiKey Parameter Is Required!');
   }
