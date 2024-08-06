@@ -17,6 +17,8 @@ let shuffledData = maryam.shuffle(data);
 const sentUrls = [];
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/coupledp', async (req, res) => {
   let apiKeys = "Maryam"
   let apiKey = req.query.apiKey
