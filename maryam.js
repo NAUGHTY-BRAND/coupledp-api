@@ -77,7 +77,13 @@ app.get('/addcoupledp', async (req, res) => {
 app.get('/gpt4', async (req, res) => {
   let q = req.query.q;
   let uid = req.query.uid;
-  
+  let baseurl = `https://hercai.onrender.com/beta/hercai?question=${q}&user=${uid}`;
+  if (!q || !uid) {
+    return res.status(400).send('Question And Uid Are Required');
+    let result = axios.get(baseurl);
+    let maryam = result.data.content;
+    re.json(maryam);
+  }
 }
 app.use((err, req, res, next) => {
   console.error(err.stack);
