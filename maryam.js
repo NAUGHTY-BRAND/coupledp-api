@@ -74,6 +74,11 @@ app.get('/addcoupledp', async (req, res) => {
     res.send('Matching images added successfully');
   });
 });
+app.get('/gpt4', async (req, res) => {
+  let q = req.query.q;
+  let uid = req.query.uid;
+  
+}
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
