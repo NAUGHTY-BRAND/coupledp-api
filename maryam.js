@@ -84,7 +84,7 @@ app.get('/gpt4', async (req, res) => {
     let maryam = result.data.content;
     re.json(maryam);
   }
-}
+});
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
