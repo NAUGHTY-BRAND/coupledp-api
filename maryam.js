@@ -75,14 +75,14 @@ app.get('/addcoupledp', async (req, res) => {
   });
 });
 app.get('/gpt4', async (req, res) => {
-  let q = req.query.q;
-  let uid = req.query.uid;
-  let baseurl = `https://hercai.onrender.com/beta/hercai?question=${q}&user=${uid}`;
+  let p = req.query.q;
+  let userid = req.query.uid;
+  let baseurl = `https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`;
   if (!q || !uid) {
     return res.status(400).send('Question And Uid Are Required');
-    let result = axios.get(baseurl);
+    let result = axios.get(`https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`);
     let maryam = result.data.content;
-    re.json(maryam);
+    req.json(maryam);
   }
 });
 app.use((err, req, res, next) => {
