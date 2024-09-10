@@ -83,8 +83,8 @@ app.get('/gpt4', async (req, res) => {
     return res.status(400).send('Question And Uid Are Required');
   }
     let rss = await axios.get(`https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`);
-    let maryam = rss.data.content;
- res.status(200).send(maryam);
+    let maryam_ai_data = rss.data.reply;
+ res.json({ maryam: maryam_ai_data })
 });
 app.use((err, req, res, next) => {
   console.error(err.stack);
