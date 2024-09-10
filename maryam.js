@@ -1,3 +1,4 @@
+
 console.log(`\n
 ███╗   ███╗ █████╗ ██████╗ ██╗   ██╗ █████╗ ███╗   ███╗
 ████╗ ████║██╔══██╗██╔══██╗╚██╗ ██╔╝██╔══██╗████╗ ████║
@@ -12,7 +13,7 @@ const path = require('path')
 const fs = require('fs');
 const maryam = require('lodash');
 const data = require('./dps.json');
-
+const axios = require('axios');
 const app = express();
 let shuffledData = maryam.shuffle(data);
 const sentUrls = [];
@@ -78,12 +79,12 @@ app.get('/gpt4', async (req, res) => {
   let p = req.query.q;
   let userid = req.query.uid;
   let baseurl = `https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`;
-  if (!q || !uid) {
+  if (!p || !userid) {
     return res.status(400).send('Question And Uid Are Required');
-    let result = axios.get(`https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`);
-    let maryam = result.data.content;
-    req.json(maryam);
   }
+    let rss = await axios.get(`https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`);
+    let maryam = rss.data.content;
+ res.status(200).send(maryam);
 });
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -93,7 +94,7 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log(`
 =================================================
-  
+
 Api                    Is                   Now
 
  ██████╗ ███╗   ██╗██╗     ██╗███╗   ██╗███████╗
