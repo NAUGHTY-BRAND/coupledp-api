@@ -78,7 +78,6 @@ app.get('/addcoupledp', async (req, res) => {
 app.get('/gpt4', async (req, res) => {
   let p = req.query.q;
   let userid = req.query.uid;
-  let baseurl = `https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`;
   if (!p || !userid) {
     return res.status(400).send('Question And Uid Are Required');
   }
