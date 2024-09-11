@@ -113,7 +113,7 @@ let result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
         }
     });
     } catch (error) {
-        return res.status(502).send(`An Error Occured ${error.message}`);
+        return res.status(502).send(`An Error Occured ${error}`);
     }
 });
 app.use((err, req, res, next) => {
