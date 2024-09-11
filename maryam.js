@@ -93,7 +93,23 @@ if (!name || !type) {
     return res.status(400).send('Name And Type Parameter Is Required');
   }
   try {
-        const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
+const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
+    let finalresults = `${result}`
+    res.json({
+        maryam: {
+            Creator: finalresults.creator,
+            creator_contact: finalresults.creator_contact,
+            type: ,
+  title: finalresults.title,
+  description: finalresults.description,
+  duration: finalresults.duration,
+  views: finalresults.views,
+  authorName: finalresults.authorName,
+  uploadDate: finalresults.uploadDate,
+  downloadUrl: finalresults.downloadUrl,
+  shortUrl: finalresults.shortUrl
+        }
+    });
         res.json({ maryam: maryam_song_data })
     } catch (error) {
         return res.status(502).send(`An Error Occured ${error.message}`);
