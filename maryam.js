@@ -99,7 +99,7 @@ const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' })
         maryam: {
             Creator: finalresults.creator,
             creator_contact: finalresults.creator_contact,
-            type: ,
+            type: finalresults.type,
   title: finalresults.title,
   description: finalresults.description,
   duration: finalresults.duration,
