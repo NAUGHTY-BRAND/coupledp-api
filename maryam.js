@@ -87,17 +87,16 @@ app.get('/gpt4', async (req, res) => {
  res.json({ maryam: maryam_ai_data })
 });
 app.get('/ytdl', async (req, res) => {
-  try {
-let name = req.query.name;
-let type = req.query.type;
+const ytdlsong = req.query.name;
+const ytdltype = req.query.type;
     if (!name || !type) {
     return res.status(400).send('Name And Type Parameter Is Required');
   }
-    console.log(name);
-    console.log(type);
-let result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
-    let finalresults = `${result}`
-    res.json({
+async function fetchMedia() {
+    try {
+        const ytdlresult = await downloadMedia({ ytdlsong, ytdltype, apikey: 'maryam-youtube-api' });
+        let finalresults = `${ytdlresult}`
+          res.json({
         maryam: {
             Creator: finalresults.creator,
             creator_contact: finalresults.creator_contact,
@@ -115,6 +114,8 @@ let result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
     } catch (error) {
         return res.status(502).send(`An Error Occured ${error}`);
     }
+}
+fetchMedia();
 });
 app.use((err, req, res, next) => {
   console.error(err.stack);
