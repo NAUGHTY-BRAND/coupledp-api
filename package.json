@@ -16,5 +16,6 @@
     "express": "^4.18.2",
     "lodash": "^4.17.21",
     "node-fetch": "^3.2.6"
+    "yt-downloadify": "^1.1.0"
   }
 }
