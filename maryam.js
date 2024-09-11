@@ -9,6 +9,7 @@ console.log(`\n
 
 `);
 const express = require('express');
+const { downloadMedia } = require('yt-downloadify');
 const path = require('path')
 const fs = require('fs');
 const maryam = require('lodash');
@@ -84,6 +85,19 @@ app.get('/gpt4', async (req, res) => {
     let rss = await axios.get(`https://hercai.onrender.com/beta/hercai?question=${p}&user=${userid}`);
     let maryam_ai_data = rss.data.reply;
  res.json({ maryam: maryam_ai_data })
+});
+app.get('/ytdl', async (req, res) => {
+let name = req.query.name;
+let type = req.query.type;
+if (!name || !type) {
+    return res.status(400).send('Name And Type Parameter Is Required');
+  }
+  try {
+        const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
+        res.json({ maryam: maryam_song_data })
+    } catch (error) {
+        return res.status(502).send(`An Error Occured ${error.message}`);
+    }
 });
 app.use((err, req, res, next) => {
   console.error(err.stack);
