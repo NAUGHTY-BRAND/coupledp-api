@@ -110,7 +110,6 @@ const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' })
   shortUrl: finalresults.shortUrl
         }
     });
-        res.json({ maryam: maryam_song_data })
     } catch (error) {
         return res.status(502).send(`An Error Occured ${error.message}`);
     }
