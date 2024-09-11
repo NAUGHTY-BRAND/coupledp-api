@@ -87,13 +87,13 @@ app.get('/gpt4', async (req, res) => {
  res.json({ maryam: maryam_ai_data })
 });
 app.get('/ytdl', async (req, res) => {
+  try {
 let name = req.query.name;
 let type = req.query.type;
-if (!name || !type) {
+    if (!name || !type) {
     return res.status(400).send('Name And Type Parameter Is Required');
   }
-  try {
-const result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
+let result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
     let finalresults = `${result}`
     res.json({
         maryam: {
