@@ -93,6 +93,8 @@ let type = req.query.type;
     if (!name || !type) {
     return res.status(400).send('Name And Type Parameter Is Required');
   }
+    console.log(name);
+    console.log(type);
 let result = await downloadMedia({ name, type, apikey: 'maryam-youtube-api' });
     let finalresults = `${result}`
     res.json({
