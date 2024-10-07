@@ -18,6 +18,7 @@ const axios = require('axios');
 const app = express();
 let shuffledData = maryam.shuffle(data);
 const sentUrls = [];
+const asf = require("amz-scrapper-faris");
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -91,7 +92,14 @@ app.get('/amzdata', async (req, res) => {
   if (!amzasin) {
     return res.status(400).send('Asin Parameter Is Required');
   }
- //res.json({ maryam: maryam_ai_data })
+  let asf = require("amz-scrapper-faris");
+  asf(amzasin)
+  .then((imgs) => {
+    res.json({ faris: imgs })
+  })
+  .catch((error) => {
+    return res.status(400).send(error);
+  });
 });
 app.get('/ytdl', async (req, res) => {
 const ytdlsong = req.query.name;
