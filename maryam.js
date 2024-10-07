@@ -87,6 +87,11 @@ app.get('/gpt4', async (req, res) => {
     let maryam_ai_data = rss.data.reply;
  res.json({ maryam: maryam_ai_data })
 });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 app.get('/amzdata', async (req, res) => {
   let amzasin = req.query.asin;
   if (!amzasin) {
