@@ -86,6 +86,13 @@ app.get('/gpt4', async (req, res) => {
     let maryam_ai_data = rss.data.reply;
  res.json({ maryam: maryam_ai_data })
 });
+app.get('/amzdata', async (req, res) => {
+  let amzasin = req.query.asin;
+  if (!amzasin) {
+    return res.status(400).send('Asin Parameter Is Required');
+  }
+ //res.json({ maryam: maryam_ai_data })
+});
 app.get('/ytdl', async (req, res) => {
 const ytdlsong = req.query.name;
 const ytdltype = req.query.type;
