@@ -1,6 +1,6 @@
 {
   "name": "Reset-Api",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "Reset Api",
   "main": "maryam.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
-    "amz-scrapper-faris": "^1.0.1",
+    "amz-scrapper-faris": "^1.0.2",
     "axios": "^1.7.7",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
