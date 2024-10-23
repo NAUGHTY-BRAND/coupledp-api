@@ -106,6 +106,20 @@ app.get('/amzimg', async (req, res) => {
     return res.status(400).send(error);
   });
 });
+app.get('/amzdata', async (req, res) => {
+  let amzasin = req.query.asin;
+  if (!amzasin) {
+    return res.status(400).send('Asin Parameter Is Required');
+  }
+  let { asinImg, asinData } = require("amz-scrapper-faris");
+  asinData(amzasin)
+  .then((data) => {
+    res.json({ faris: data })
+  })
+  .catch((error) => {
+    return res.status(400).send(error);
+  });
+});
 app.get('/ytdl', async (req, res) => {
 const ytdlsong = req.query.name;
 const ytdltype = req.query.type;
