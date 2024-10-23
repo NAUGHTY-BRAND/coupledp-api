@@ -6,7 +6,6 @@ console.log(`\n
 ██║╚██╔╝██║██╔══██║██╔══██╗  ╚██╔╝  ██╔══██║██║╚██╔╝██║
 ██║ ╚═╝ ██║██║  ██║██║  ██║   ██║   ██║  ██║██║ ╚═╝ ██║
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝
-
 `);
 const express = require('express');
 const { downloadMedia } = require('yt-downloadify');
@@ -92,26 +91,12 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-app.get('/amzimg', async (req, res) => {
-  let amzasin = req.query.asin;
-  if (!amzasin) {
-    return res.status(400).send('Asin Parameter Is Required');
-  }
-  let { asinImg, asinData } = require("amz-scrapper-faris");
-  asinImg(amzasin)
-  .then((imgs) => {
-    res.json({ faris: imgs })
-  })
-  .catch((error) => {
-    return res.status(400).send(error);
-  });
-});
 app.get('/amzdata', async (req, res) => {
   let amzasin = req.query.asin;
   if (!amzasin) {
     return res.status(400).send('Asin Parameter Is Required');
   }
-  let { asinImg, asinData } = require("amz-scrapper-faris");
+  let { asinData } = require("amz-scrapper-faris");
   asinData(amzasin)
   .then((data) => {
     res.json({ faris: data })
