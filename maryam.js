@@ -92,13 +92,13 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-app.get('/amzdata', async (req, res) => {
+app.get('/amzimg', async (req, res) => {
   let amzasin = req.query.asin;
   if (!amzasin) {
     return res.status(400).send('Asin Parameter Is Required');
   }
-  let asf = require("amz-scrapper-faris");
-  asf(amzasin)
+  let { asinImg, asinData } = require("amz-scrapper-faris");
+  asinImg(amzasin)
   .then((imgs) => {
     res.json({ faris: imgs })
   })
